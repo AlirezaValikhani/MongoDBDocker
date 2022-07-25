@@ -1,18 +1,22 @@
 package com.test.mongodbDocker.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collation = "books")
+@Document(collection = "books")
 public class Book {
     @Id
-    private Long id;
+    private String id;
     private String name;
     private String authorName;
+
+    public Book(String name, String authorName) {
+        this.name = name;
+        this.authorName = authorName;
+    }
 }

@@ -1,5 +1,6 @@
 package com.test.mongodbDocker.service.impl;
 
+import com.test.mongodbDocker.dto.BookDto;
 import com.test.mongodbDocker.model.Book;
 import com.test.mongodbDocker.repository.BookRepository;
 import com.test.mongodbDocker.service.BookService;
@@ -17,13 +18,14 @@ public class BookServiceImp implements BookService {
 
 
     @Override
-    public Book save(Book book) {
+    public Book save(BookDto bookDto) {
+        Book book = new Book(bookDto.getName(),bookDto.getAuthorName());
         return bookRepository.save(book);
     }
 
     @Override
-    public Book findById(Long id) {
-        return bookRepository.findBookById(id);
+    public Book findByName(String name) {
+        return bookRepository.findBookByName(name);
     }
 
     @Override
@@ -32,8 +34,8 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
-    public String delete(Long id) {
-        bookRepository.deleteById(id);
+    public String delete(String id) {
+        bookRepository.deleteById(Long.valueOf(id));
         return "Deleted successfully";
     }
 }
