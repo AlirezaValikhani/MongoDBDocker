@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface BookService {
     Book save(BookDto bookDto);
-    Book findByName(String id);
+    Book findByName(String name);
+    Book findById(String id);
     List<Book> findAll();
     String delete(String id);
 }
